@@ -12,7 +12,7 @@ export default {
     },
     data(){
         return{
-            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=39&offset=0',
+            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=300&offset=0',
             cards: [],
             error: false
         }
@@ -21,7 +21,7 @@ export default {
         axios
         .get(this.main_api_url)
         .then((response) => {
-      
+            console.log(response);
             this.cards = response.data.data;
      
         })
@@ -38,8 +38,10 @@ export default {
     <main>
 
         <FilterSelect></FilterSelect>
+        <div v-if="cards.length == 0" class="loader"></div>
+        <section v-else id="wrapper">
 
-        <section id="wrapper">
+
 
             <div class="container">
 
@@ -66,6 +68,21 @@ export default {
 
 
 <style scoped>
+
+.loader{
+    margin: auto;
+    border: 8px solid var(--yu-gi-oh-dark);
+    border-radius: 50%;
+    border-top: 8px solid var(--yu-gi-oh-primary);
+    width: 100px;
+    height: 100px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
 .result{
     background-color: var(--yu-gi-oh-dark);
     color: var(--yu-gi-oh-white);
