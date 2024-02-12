@@ -3,12 +3,16 @@
 import axios from 'axios';
 import Card from "./Card.vue";
 import FilterSelect from "./FilterSelect.vue";
+import Loader from "./Loader.vue";
+import ResultBanner from "./ResultBanner.vue";
 
 export default {
     name:'AppMain',
     components:{
         Card,
-        FilterSelect
+        FilterSelect,
+        Loader,
+        ResultBanner
     },
     data(){
         return{
@@ -21,10 +25,10 @@ export default {
         axios
         .get(this.main_api_url)
         .then((response) => {
-            console.log(response);
-            this.cards = response.data.data;
-     
+           
+            this.cards = response.data.data;     
         })
+
         .catch((error) => {
             this.error = error.message;
             console.log(error);
@@ -37,24 +41,20 @@ export default {
 
     <main>
 
-        <FilterSelect></FilterSelect>
-        <div v-if="cards.length == 0" class="loader"></div>
+        <FilterSelect ></FilterSelect>
+        <Loader v-if="cards.length == 0"></Loader>
+        
         <section v-else id="wrapper">
-
-
-
             <div class="container">
 
-                <div class="result">
-                    <strong>Found {{ cards.length }} cards</strong>
-                </div>
+                <ResultBanner :result="cards.length"></ResultBanner>
 
                 <div class="row">
 
                     <Card
-                    v-for="card in cards"
-                    :key="card.id + '_' + card.name"
-                    :card="card">
+                        v-for="card in cards"
+                        :key="card.id + '_' + card.name"
+                        :card="card">
                     </Card>
                     
                 </div>
@@ -69,24 +69,4 @@ export default {
 
 <style scoped>
 
-.loader{
-    margin: auto;
-    border: 8px solid var(--yu-gi-oh-dark);
-    border-radius: 50%;
-    border-top: 8px solid var(--yu-gi-oh-primary);
-    width: 100px;
-    height: 100px;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-.result{
-    background-color: var(--yu-gi-oh-dark);
-    color: var(--yu-gi-oh-white);
-    padding: 1.75rem;
-    font-size: larger;
-}
 </style>

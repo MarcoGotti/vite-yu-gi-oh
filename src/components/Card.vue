@@ -18,6 +18,15 @@
             <div class="archetype">
                 {{ card.archetype }}
             </div>
+            <div class="type">
+                {{ card.type }}
+            </div>
+            <div class="race">
+                {{ card.race }}
+            </div>
+            <div class="attribute">
+                {{ card.attribute }}
+            </div>
         
         </div>
     </div>
@@ -27,15 +36,21 @@
 
 
 <style scoped>
+.card:hover img{
+    scale: 1.03;
+    filter: drop-shadow(0 0 15px var(--yu-gi-oh-primary));
+}
 .card{
   height: 100%;
   text-align: center;
   background-color: var(--yu-gi-oh-primary);
   padding-bottom: .25rem;
+  transition: all 0.3s;
 
   > img {
     width: 100%;
     display: block;
+    transition: all .5s;
   }
 
   > .name{
@@ -45,6 +60,15 @@
   }
 
   > .archetype{
+  }
+  > .type{
+    color: var(--yu-gi-oh-type);
+  }
+  > .race{
+    color: var(--yu-gi-oh-race);
+  }
+  > .attribute{
+    color: var(--yu-gi-oh-attribute);
   }
 }
 </style>

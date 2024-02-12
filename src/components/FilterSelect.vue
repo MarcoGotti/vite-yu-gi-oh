@@ -6,7 +6,7 @@
 
 <template>
 
-        <select name="type" id="type">
+        <select name="type">
           <option value="" selected>All</option>
           <option value="alien">Alien</option>
           <option value="infernoble_arms">Infernoble Arms</option>
@@ -19,7 +19,7 @@
 
 
 <style scoped>
-#type{
+select{
     margin: 2rem 0 2rem 6%;
     padding: .5rem;
     background: var(--yu-gi-oh-white);

@@ -2,7 +2,7 @@
 
     <header>
 
-        <img src="https://images.ygoprodeck.com/images/assets/ygoprodeck_header_logo.png?v=1.13" alt="">
+        <img src="https://tse2.mm.bing.net/th?id=OIP.bUBYysYCfLWFWYpfQ8i8KAHaCh&pid=Api" alt="">
         <p>Yu-Gi-Oh Api</p>
 
     </header>
@@ -25,7 +25,7 @@ header{
 
     > img {   
         margin-right: 2rem;
-        width: 100px;
+        width: 80px;
         
     }
 

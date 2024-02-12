@@ -7,7 +7,10 @@
 :root {
   --yu-gi-oh-primary: #d48f38;
   --yu-gi-oh-white: white;
-  --yu-gi-oh-dark: #333;
+  --yu-gi-oh-dark: #2a2a2a;
+  --yu-gi-oh-type: rgb(41, 86, 41);
+  --yu-gi-oh-attribute: rgb(93, 6, 6);
+  --yu-gi-oh-race: rgb(64, 10, 64);
 }
 
 body {
