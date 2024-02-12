@@ -12,7 +12,7 @@ export default {
     },
     data(){
         return{
-            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0',
+            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=39&offset=0',
             cards: [],
             error: false
         }
