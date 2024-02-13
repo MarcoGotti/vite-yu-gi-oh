@@ -8,6 +8,7 @@
 
     <div  class="loader"></div>
 
+
 </template>
 
 
@@ -16,7 +17,7 @@
 
 
 .loader{
-    margin: auto;
+    margin: 5rem auto;
     border: 8px solid var(--yu-gi-oh-dark);
     border-radius: 50%;
     border-top: 8px solid var(--yu-gi-oh-primary);

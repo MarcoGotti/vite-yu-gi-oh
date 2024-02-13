@@ -12,21 +12,24 @@
     <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl" >
         <div class="card">
             <img :src="card.card_images[0].image_url_small" alt="">
-            <h4 class="name">
-                {{ card.name }}
-            </h4>
-            <div class="archetype">
-                {{ card.archetype }}
+            <div class="card_info">
+                <h4 class="name">
+                    {{ card.name }}
+                </h4>
+                <div class="archetype">
+                    {{ card.archetype }}
+                </div>
+                <div class="type">
+                    {{ card.type }}
+                </div>
+                <div class="race">
+                    {{ card.race }}
+                </div>
+                <div class="attribute">
+                    {{ card.attribute }}
+                </div>           
             </div>
-            <div class="type">
-                {{ card.type }}
-            </div>
-            <div class="race">
-                {{ card.race }}
-            </div>
-            <div class="attribute">
-                {{ card.attribute }}
-            </div>
+
         
         </div>
     </div>
@@ -48,15 +51,18 @@
   transition: all 0.3s;
 
   > img {
-    width: 100%;
+    width: 100%; /* no max-width perchè un'immagine è piu piccola */
     display: block;
     transition: all .5s;
   }
 
-  > .name{
+  > .card_info{
+   
+    > .name{
     text-transform: uppercase;
     color: var(--yu-gi-oh-white);
     padding: 1rem .5rem;
+    font-size: 14px;
   }
 
   > .archetype{
@@ -70,5 +76,8 @@
   > .attribute{
     color: var(--yu-gi-oh-attribute);
   }
+  }
+
+  
 }
 </style>

@@ -16,23 +16,36 @@ export default {
     },
     data(){
         return{
-            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=300&offset=0',
+            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=100&offset=0',
             cards: [],
+            loader: true,
             error: false
         }
     },
-    mounted(){
-        axios
-        .get(this.main_api_url)
-        .then((response) => {
+    computed:{
+        getResult(){
+            return this.cards ? 'Found ' + this.cards.length + ' results' : '0 results'
+        }
+    },
+    methods:{
+        getCards(url){
+            axios
+            .get(url)
+            .then((response) => {
            
-            this.cards = response.data.data;     
-        })
+                this.cards = response.data.data;  
+                this.loader = false;   
+            })
 
-        .catch((error) => {
-            this.error = error.message;
-            console.log(error);
-        })
+            .catch((error) => {
+                this.error = error.message;
+                console.log(error);
+            })
+        }
+    },
+    created(){
+        this.getCards(this.main_api_url)
+        
     }
 }
 </script>
@@ -42,12 +55,12 @@ export default {
     <main>
 
         <FilterSelect ></FilterSelect>
-        <Loader v-if="cards.length == 0"></Loader>
+        <Loader v-if="loader"></Loader>
         
         <section v-else id="wrapper">
             <div class="container">
 
-                <ResultBanner :result="cards.length"></ResultBanner>
+                <ResultBanner :result="getResult"></ResultBanner>
 
                 <div class="row">
 

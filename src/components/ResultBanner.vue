@@ -2,7 +2,7 @@
     export default {
         name:'ResultBanner',
         props:{
-            result: Number
+            result: String
         }
     }
 </script>
@@ -10,7 +10,7 @@
 <template>
     
     <div class="result">
-        <strong>Found {{ result }} cards</strong>
+        <strong>{{ result }}</strong>
     </div>
 
 </template>
