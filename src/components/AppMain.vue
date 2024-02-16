@@ -18,6 +18,7 @@ export default {
         return{
             main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=100&offset=0',
             cards: [],
+            cards_archetypes:[],
             loader: true,
             error: false
         }
@@ -34,7 +35,13 @@ export default {
             .then((response) => {
            
                 this.cards = response.data.data;  
-                this.loader = false;   
+                this.loader = false;  
+                this.cards.forEach(card => {
+                    if (card.archetype && !this.cards_archetypes.includes(card.archetype)){
+                        this.cards_archetypes.push(card.archetype)
+                    }
+                }); 
+                console.log(this.cards_archetypes);
             })
 
             .catch((error) => {
@@ -54,7 +61,7 @@ export default {
 
     <main>
 
-        <FilterSelect ></FilterSelect>
+        <FilterSelect :select_options="cards_archetypes"></FilterSelect>
         <Loader v-if="loader"></Loader>
         
         <section v-else id="wrapper">

@@ -1,6 +1,14 @@
 <script>
     export default {
-        name:'FilterSelect'
+        name:'FilterSelect',
+        props:{
+            select_options: Array
+        },
+        data(){
+            return{
+                archetypes:[]
+            }
+        },
     }
 </script>
 
@@ -8,11 +16,15 @@
 
         <select name="type">
           <option value="" selected>All</option>
-          <option value="alien">Alien</option>
+          <option 
+          v-for="option in select_options" 
+          :value="option"> {{ option }}
+          </option>
+          <!-- <option value="alien">Alien</option>
           <option value="infernoble_arms">Infernoble Arms</option>
           <option value="melodious">Melodious</option>
           <option value="noble_knight">Noble Knight</option>
-          <option value="archfiend">Archfiend</option>
+          <option value="archfiend">Archfiend</option> -->
         </select>
     
 </template>
