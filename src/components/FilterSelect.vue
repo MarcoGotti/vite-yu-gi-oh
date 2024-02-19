@@ -4,9 +4,12 @@
         props:{
             select_options: Array
         },
+        emits:[
+            'filterResults'
+        ],
         data(){
             return{
-                archetypes:[]
+                selectedOption: '',
             }
         },
     }
@@ -14,7 +17,7 @@
 
 <template>
 
-        <select name="type">
+        <select name="archetype" v-model="selectedOption" @change="$emit('filterResults', [selectedOption])">
           <option value="" selected>All</option>
           <option 
           v-for="option in select_options" 

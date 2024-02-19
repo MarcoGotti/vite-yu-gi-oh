@@ -16,14 +16,16 @@ export default {
     },
     data(){
         return{
-            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=100&offset=0',
+            main_api_url:'https://db.ygoprodeck.com/api/v7/cardinfo.php?num=40&offset=0',
             cards: [],
+            filtered_cards:[],
             cards_archetypes:[],
             loader: true,
             error: false
         }
     },
     computed:{
+        
         getResult(){
             return this.cards ? 'Found ' + this.cards.length + ' results' : '0 results'
         }
@@ -33,7 +35,6 @@ export default {
             axios
             .get(url)
             .then((response) => {
-           
                 this.cards = response.data.data;  
                 this.loader = false;  
                 this.cards.forEach(card => {
@@ -42,17 +43,24 @@ export default {
                     }
                 }); 
                 console.log(this.cards_archetypes);
+                console.log(this.cards);
             })
 
             .catch((error) => {
                 this.error = error.message;
                 console.log(error);
             })
+        },
+        filterCards(data){
+
+            const [selectedOption] = data;
+            console.log(selectedOption);
+
+            return selectedOption === '' ? console.log(this.cards) : console.log(this.cards.filter(card => card.archetype === selectedOption));
         }
     },
     created(){
-        this.getCards(this.main_api_url)
-        
+        this.getCards(this.main_api_url)       
     }
 }
 </script>
@@ -61,7 +69,7 @@ export default {
 
     <main>
 
-        <FilterSelect :select_options="cards_archetypes"></FilterSelect>
+        <FilterSelect :select_options="cards_archetypes" @filterResults="filterCards"></FilterSelect><!-- @filterResults="filterCards" -->
         <Loader v-if="loader"></Loader>
         
         <section v-else id="wrapper">
@@ -72,10 +80,11 @@ export default {
                 <div class="row">
 
                     <Card
-                        v-for="card in cards"
-                        :key="card.id + '_' + card.name"
-                        :card="card">
+                        
+                        :cards="cards">
                     </Card>
+                    <!-- v-for="card in cards"
+                        :key="card.id + '_' + card.name" -->
                     
                 </div>
             </div>

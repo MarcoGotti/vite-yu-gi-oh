@@ -2,14 +2,17 @@
     export default {
         name:'Card',
         props:{
-            card: Object
+            cards: Array
         }
     }
 </script>
 
 <template>
     
-    <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl" >
+    <div  class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl"
+    v-for="card in cards"
+    :key="card.id + '_' + card.name" >
+
         <div class="card">
             <img :src="card.card_images[0].image_url_small" alt="">
             <div class="card_info">
@@ -19,7 +22,7 @@
                 <div class="archetype">
                     {{ card.archetype }}
                 </div>
-                <div class="type">
+                <!-- <div class="type">
                     {{ card.type }}
                 </div>
                 <div class="race">
@@ -27,7 +30,7 @@
                 </div>
                 <div class="attribute">
                     {{ card.attribute }}
-                </div>           
+                </div>  -->          
             </div>
 
         
